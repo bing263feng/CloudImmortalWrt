@@ -1,0 +1,19 @@
+# 基础配置（核心适配NanoPi R1）
+CONFIG_TARGET="rockchip"
+CONFIG_TARGET_SUBTARGET="armv8"
+CONFIG_TARGET_PROFILE="DEVICE_friendlyarm_nanopi-r1"
+CONFIG_TARGET_BOARD="rockchip"
+CONFIG_TARGET_ARCH_PACKAGES="aarch64_cortex-a53"
+DEVICE_DTS="rockchip/rk3328-nanopi-r1.dtb"
+DEVICE_TITLE="FriendlyARM NanoPi R1 (RK3328)"
+
+# 必加驱动（网口必用+基础依赖）
+PACKAGES="kmod-usb-net-rtl8152 kmod-usb-net kmod-usb-core luci luci-base luci-compat"
+
+# 集成你要的PassWall（不用再装ipk）
+PACKAGES+=" luci-app-passwall luci-i18n-passwall-zh-cn passwall shadowsocks-rust v2ray-core xray-core chinadns-ng dns2socks ipt2socks"
+
+# 优化项（可选，保留更流畅）
+PACKAGES+=" luci-theme-argon wget curl coreutils"
+CONFIG_PACKAGE_luci-app-firewall=y
+CONFIG_PACKAGE_dnsmasq-full=y
